@@ -1,0 +1,43 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Restaurant365CodeChallenge
+{
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            int newNum = 0;
+
+            Console.WriteLine("Enter numbers to add seperated by commas: ");
+
+            string userNums = Console.ReadLine();
+
+            string[] values = userNums.Split(',');
+
+            if (values.Length > 2)
+            {
+                throw (new NumberMaxException("More than two numbers"));
+            }
+
+            for (int i = 0; i < values.Length; i++)
+            {
+                newNum = newNum + Convert.ToInt32(values[i]);
+            }
+
+            Console.WriteLine("Calculation complete. Number is: " + newNum);
+        }
+    }
+
+
+    public class NumberMaxException : Exception
+    {
+        public NumberMaxException(string message) : base(message)
+        {
+        }
+    }
+}
+
