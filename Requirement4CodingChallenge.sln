@@ -1,0 +1,51 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Restaurant365CodeChallenge
+{
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            int newNum = 0;
+
+            //User input
+            Console.WriteLine("Enter numbers to add seperated by commas: ");
+            string userNums = Console.ReadLine();
+
+            //Split string by every comma
+            string[] values = userNums.Split(',');
+
+            //For loop which checks if there is a negative number. If so, an error is thrown
+            for (int i = 0; i < values.Length; i++)
+            {
+                if (Convert.ToInt32(values[i]) < 0)
+                {
+                    throw (new NegativeNumberException("Exception: Cannot have negative numbers"));
+                }
+            }
+
+            //For loop to add up the numbers
+            for (int i = 0; i < values.Length; i++)
+            {
+                newNum = newNum + Convert.ToInt32(values[i]);
+            }
+
+            //Print solution back to user
+            Console.WriteLine("Calculation complete. Number is: " + newNum);
+            Console.ReadLine();
+        }
+    }
+
+    //Created exception if there is a negative number
+    public class NegativeNumberException : Exception
+    {
+        public NegativeNumberException(string message) : base(message)
+        {
+        }
+    }
+}
+
