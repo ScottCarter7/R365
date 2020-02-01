@@ -1,0 +1,40 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Restaurant365CodeChallenge
+{
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            int newNum = 0;
+
+            //User input
+            Console.WriteLine("Enter numbers to add: ");
+            string userNums = Console.ReadLine();
+
+            //split string entered by the comma
+            string[] values = userNums.Split(',');
+
+            //For loop to see if a number is greater than 1000. If so, return a 0 for that number.
+            //Then add up the number
+            for (int i = 0; i < values.Length; i++)
+            {
+                if (Convert.ToInt32(values[i]) > 1000)
+                {
+                    values[i] = "0";
+                }
+
+                newNum = newNum + Convert.ToInt32(values[i]);
+            }
+
+            //Print solution to user
+            Console.WriteLine("Calculation complete. Number is: " + newNum);
+            Console.ReadLine();
+        }
+    }
+}
+
