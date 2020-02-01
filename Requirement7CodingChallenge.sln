@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Restaurant365CodeChallenge
+{
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            //declare variables
+            int newNum = 0;
+            string newDelimiterChar;
+            string newDelimiterString;
+
+            //user input custom delimiter and numbers
+            Console.WriteLine("Enter custom delimiters and numbers to add: ");
+            string userNums = Console.ReadLine();
+
+            //Find the custom character delimiter
+            int userCharStart = userNums.IndexOf("{");
+            newDelimiterChar = userNums.Substring(userCharStart, 1);
+
+            //Find the customer string delimiter
+            //I couldn't fully figure out how to run it to not worry about any other characters other than the
+            //delimiters and the numbers, but I made it so it could find the custom strings
+            int userStringStart = Convert.ToInt32(userNums.IndexOf("["));
+            int userStringLength = Convert.ToInt32(userNums.IndexOf("[")) - Convert.ToInt32(userNums.LastIndexOf("]"));
+            newDelimiterString = userNums.Substring(userStringStart, userStringLength);
+
+            //split the entered string by a comma, \n, or a custom character
+            string[] values = userNums.Split(new String[] { ",", "\\n", newDelimiterChar, newDelimiterString }, StringSplitOptions.None);
+
+            //for loop to add up the new numbers
+            for (int i = 0; i < values.Length; i++)
+            {
+                newNum = newNum + Convert.ToInt32(values[i]);
+            }
+
+            //Prints solution to the user
+            Console.WriteLine("Calculation complete. Number is: " + newNum);
+            Console.ReadLine();
+        }
+    }
+}
+
