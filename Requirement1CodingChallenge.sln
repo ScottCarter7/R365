@@ -12,27 +12,34 @@ namespace Restaurant365CodeChallenge
         {
             int newNum = 0;
 
+            //User enters numbers
             Console.WriteLine("Enter numbers to add seperated by commas: ");
 
             string userNums = Console.ReadLine();
 
+            //Split string value entered to have the different numbers
             string[] values = userNums.Split(',');
 
+            //Throw exception if there is two or more numbers entered
             if (values.Length > 2)
             {
                 throw (new NumberMaxException("More than two numbers"));
             }
 
+            //for loop that adds the numbers together
             for (int i = 0; i < values.Length; i++)
             {
+
                 newNum = newNum + Convert.ToInt32(values[i]);
             }
 
+            //Prints off result to user
             Console.WriteLine("Calculation complete. Number is: " + newNum);
+            Console.ReadLine();
         }
     }
 
-
+    //Created exceptiont for too many numbers
     public class NumberMaxException : Exception
     {
         public NumberMaxException(string message) : base(message)
@@ -40,4 +47,3 @@ namespace Restaurant365CodeChallenge
         }
     }
 }
-
